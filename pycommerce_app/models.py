@@ -42,7 +42,6 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
-<<<<<<< HEAD
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
@@ -66,5 +65,3 @@ class Order(models.Model):
     user = models.ForeignKey(User, related_name="ordered_users", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-=======
->>>>>>> ca13bc2dcc4f749401e55b03b8179d0fbd40b5aa
