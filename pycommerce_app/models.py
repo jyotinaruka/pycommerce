@@ -38,3 +38,26 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+class Product(models.Model):
+    title = models.CharField(max_length=100)
+    desc = models.CharField(max_length=255)
+    price = models.IntegerField()
+    inventory = models.IntegerField()
+    quantity_sold = models.IntegerField()
+    image_url = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    products = models.ManyToManyField(Product, related_name = "Categories")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Order(models.Model):
+    quantity = models.IntegerField()
+    product = models.ForeignKey(Product, related_name="ordered_products", on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name="ordered_users", on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

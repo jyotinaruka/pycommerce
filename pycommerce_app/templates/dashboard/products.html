@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pycommerce</title>
+        {% load static%}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    </head>
+
+    <body>
+        <div class="container mt-2">
+        <button class="btn btn-danger btn-lg"><a href="products/newproduct">Add New Product</a></button>
+        <div class="container-fluid mt-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Picture</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Inventory Count</th>
+                        <th>Quantity Sold</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td><img width="50" src="/static/img/{{product.image_url}}.jpg" alt=""></td>
+                        <td>{{product.title}}</td>
+                        <td>{{product.desc}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.inventory}}</td>
+                        <td>{{product.quantity_sold}}</td>
+                        <td>
+                            <span><a href="products/{{product.id}}">edit</a></span> | 
+                            <span>
+                            <form class="form-signin" action="/deleteproduct" method="POST">
+                                    {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{product.id}}">
+                            <button type="submit" class="btn btn-link">delete</button>
+                            </form>
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+
+</html>
