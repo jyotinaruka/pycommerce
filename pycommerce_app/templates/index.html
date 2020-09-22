@@ -1,89 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pycommerce</title>
-        {% load static%}
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-        <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block sidebar %}
+<form class="form-inline pr-2">
+    <input class="col form-control-sm mb-2 mr-sm-2 mx-1" type="search" placeholder="Product name"
+           aria-label="Search">
+    <button class="col-2 btn btn-outline-success mb-2 fas fa-search" type="submit"></button>
+</form>
+<h4 class="mx-1">Categories</h4>
+<ul>
+    <li><a href="#">Liquid Soaps</a></li>
+    <li><a href="#">Shampoos</a></li>
+    <li><a href="#">Skin Care</a></li>
+    <li><a href="#">Oils</a></li>
+</ul>
+{% endblock %}
 
-    </head>
-
-    <body>
-        <script src="{% static 'js/bootstrap.js' %}"></script>
-        <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
-        <div id="wrapper" class="container-fluid">
-            <header class="row">
-                <nav class="col navbar black-nav">
-                    <a class="navbar-brand">
-                        <img src="{% static 'img/new-logo.png' %}"
-                             class="d-inline-block align-top logo" alt=""
-                             loading="lazy">
-                        <img src="{% static 'img/new-logo-name1.png' %}"
-                             class="d-inline-block align-top" alt=""
-                             loading="lazy">
-                    </a>
-                    <div class="col-3">
-                        <p class="navbar-brand cart-font"><span class="text-light"> <a href="/register_login">Login</a> | </span><span class="text-light"><a href="/register_login">Register</a> | </span><i class="fas fa-shopping-cart text-light"></i></p>
-                    </div>
-                </nav>
-            </header>
-            <div class="row my-2">
-                <div class="col-3 px-0">
-                    <form class="form-inline pr-2">
-                        <input class="col form-control-sm mb-2 mr-sm-2" type="search" placeholder="product name"
-                               aria-label="Search">
-                        <button class="col-2 btn btn-outline-success mb-2 fas fa-search" type="submit"></button>
-                    </form>
-                    <h2>Categories</h2>
-                    <ul>
-                        <li><a href=""></a></li>
-                    </ul>
-                </div>
-                <div class="col container no-gutters">
-                    <div class="row row-cols-3">
-                        <div class="col card">
-                            <img src="{% static 'img/amber.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Liquid Hand Soap</h5>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="col card">
-                            <img src="{% static 'img/antique-touch.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Liquid Hand Soap</h5>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="col card">
-                            <img src="{% static 'img/dance_of_flowers.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Liquid Hand Soap</h5>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="col card">
-                            <img src="{% static 'img/lila-bella.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Liquid Hand Soap</h5>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="col card">
-                            <img src="{% static 'img/love.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Liquid Hand Soap</h5>
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{% block content %}
+<div class="row row-cols-3">
+    <div class="col card">
+        <img src="{% static 'img/amber.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
-    </body>
+    </div>
+    <div class="col card">
+        <img src="{% static 'img/antique-touch.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+    <div class="col card">
+        <img src="{% static 'img/dance_of_flowers.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+    <div class="col card">
+        <img src="{% static 'img/lila-bella.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+    <div class="col card">
+        <img src="{% static 'img/love.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+    <div class="col card">
+        <img src="{% static 'img/musk.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
 
-</html>
+    <div class="col card">
+        <img src="{% static 'img/mystic_flowers.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+    <div class="col card">
+        <img src="{% static 'img/olive_oil.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+
+    <div class="col card">
+        <img src="{% static 'img/oud.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

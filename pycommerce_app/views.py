@@ -5,6 +5,11 @@ from pycommerce_app.models import User, Product, Category, Order
 def index(request):
     return render(request, 'index.html')
 
+
+def product_detail(request, id):
+    return render(request, 'product.html')
+
+
 def register_login(request):
     return render(request, 'register_login.html')
 

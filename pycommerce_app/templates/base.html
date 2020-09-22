@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Pycommerce{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <div id="wrapper" class="container-fluid">
+            <header class="row">
+                <nav class="col navbar black-nav">
+                    <a class="navbar-brand">
+                        <img src="{% static 'img/new-logo.png' %}"
+                             class="d-inline-block align-top logo" alt=""
+                             loading="lazy">
+                        <img src="{% static 'img/new-logo-name1.png' %}"
+                             class="d-inline-block align-top" alt=""
+                             loading="lazy">
+                    </a>
+                    <div class="col-3">
+                        <p class="navbar-brand cart-font"><span class="text-light"> <a href="/register_login">Login</a>
+                                | </span><span class="text-light"><a href="/register_login">Register</a> | </span><i
+                               class="fas fa-shopping-cart text-light"></i></p>
+                    </div>
+                </nav>
+            </header>
+            <div class="row my-0">
+                <div class="col container no-gutters">
+                    {% block main %}
+                    <div class="row my-2">
+                        <div class="col-3 px-0">
+                            {% block sidebar %}
+                            <h2>Sidebar block</h2>
+                            {% endblock %}
+                        </div>
+                        <div class="col container no-gutters">
+                            {% block content %}
+                            <h2>Main block</h2>
+                            {% endblock %}
+                        </div>
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
