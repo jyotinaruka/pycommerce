@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .main {
+            margin: 0 auto;
+            width: 400px;
+            background-color: aliceblue;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main container mt-2">
+        {% if messages %}
+        <ul class="messages">    
+        {% for message in messages %}    
+        <li>{{ message }}</li>    
+        {% endfor %}
+        </ul>
+{% endif %}
+    <form class="form-signin" action="/register" method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" name="first_name">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" name="last_name">
+        <label for="inputEmail">Email address</label>
+        <input type="text" id="inputEmail" class="form-control" name="email">
+        <label for="inputPassword">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control">
+        <label for="confirmed_pw">Confirm Password</label>
+        <input type="password" id="confirmed_pw" name="confirmed_pw" class="form-control">
+        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Register</button>
+      </form>
+    </div>
+      <hr class="container">
+    <div class="main">
+      <form class="form-signin" action="/login" method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please Sign in</h1>
+        <label for="inputEmail">Email address</label>
+        <input type="text" id="inputEmail" class="form-control" name="email">
+        <label for="inputPassword">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control">
+        <button class="btn btn-lg btn-warning btn-block mt-2" type="submit">Sign in</button>
+      </form>
+    </div>
+</body>
+</html>

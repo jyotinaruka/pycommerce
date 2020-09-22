@@ -15,7 +15,7 @@
     <body>
         <script src="{% static 'js/bootstrap.js' %}"></script>
         <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
-        <div id="wrapper" class="container">
+        <div id="wrapper" class="container-fluid">
             <header class="row">
                 <nav class="col navbar black-nav">
                     <a class="navbar-brand">
@@ -26,8 +26,8 @@
                              class="d-inline-block align-top" alt=""
                              loading="lazy">
                     </a>
-                    <div>
-                        <p class="navbar-brand cart-font"><i class="fas fa-shopping-cart text-light"></i></p>
+                    <div class="col-3">
+                        <p class="navbar-brand cart-font"><span class="text-light"> <a href="/register_login">Login</a> | </span><span class="text-light"><a href="/register_login">Register</a> | </span><i class="fas fa-shopping-cart text-light"></i></p>
                     </div>
                 </nav>
             </header>
