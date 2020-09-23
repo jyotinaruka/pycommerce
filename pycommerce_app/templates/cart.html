@@ -1,97 +1,96 @@
 {% extends "base.html" %}
 {% load static %}
 {% block main %}
-<div class="row mx-3">
-    <div class="col container">
-        <div class="row">
-            <div class="col-4 container">
-                <div class="row">
-                    <div class="col">
-                        <!--Carousel Wrapper-->
-                        <div id="carousel-thumb" class="carousel slide" data-ride="carousel">
-                            <!--Slides-->
-                            <div class="carousel-inner" role="listbox">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="{% static 'img/amber.jpg' %}">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="{% static 'img/amber.jpg' %}">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="{% static 'img/amber.jpg' %}">
-                                </div>
-                            </div>
-                            <!--/.Slides-->
-                            <!--Controls-->
-                            <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            <!--/.Controls-->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-thumb" data-slide-to="0" class="active">
-                                    <img class="d-block w-100" src="{% static 'img/amber.jpg' %}" class="img-fluid">
-                                </li>
-                                <li data-target="#carousel-thumb" data-slide-to="1">
-                                    <img class="d-block w-100" src="{% static 'img/amber.jpg' %}" class="img-fluid">
-                                </li>
-                                <li data-target="#carousel-thumb" data-slide-to="2">
-                                    <img class="d-block w-100" src="{% static 'img/amber.jpg' %}" class="img-fluid">
-                                </li>
-                            </ol>
-                        </div>
-                        <!--/.Carousel Wrapper-->
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col">
-                <h2>Dex Creamy Soap</h2>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ab omnis vel nesciunt adipisci,
-                    fugit iste laborum, recusandae et ex laboriosam in voluptatibus fugiat exercitationem consequuntur
-                    tempore dolores tempora minima!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, vero provident voluptate omnis a
-                    ad fugit hic similique pariatur modi quis. Rerum nam facilis nihil fuga necessitatibus magnam
-                    ratione est.</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut velit culpa incidunt hic odio
-                    consequuntur, reprehenderit quasi facere iure mollitia. Inventore perferendis itaque tempore.
-                    Molestiae numquam impedit at architecto temporibus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor eaque nemo, et obcaecati aperiam,
-                    minus quisquam consequatur repudiandae itaque debitis ipsum, dolore praesentium fuga porro ipsa
-                    deserunt minima nobis magnam!</p>
-                <div class="row">
-                    <div class="col-1">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                Qty
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">1</a>
-                                <a class="dropdown-item" href="#">2</a>
-                                <a class="dropdown-item" href="#">3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-primary mx-2">Add to cart</button>
-                    </div>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>soap</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>shampoo</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>shampoo</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+        <tfoot class="table-borderless">
+            <tr>
+                <td colspan="3"></td>
+                <th>Total $2</th>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <th><button class="btn btn-success"><a href="/">Continue shopping</a></button></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<h2>Shipping Information</h2>
+<div class="row">
+    <div class="col">
+        <form action="/carts/shipping" method="POST">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm">
+                    <input type="password" class="form-control" id="inputPassword3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">City</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">State</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Zip</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm">
+                    <button class="btn btn-primary float-right">Pay</button>
+                </div>
+            </div>
 
-
-
-
-        </div>
+        </form>
     </div>
+    <div class="col-4"></div>
 </div>
 {% endblock %}

@@ -25,7 +25,22 @@ def product_detail(request, id):
     return render(request, 'product.html', context)
 
 
+def cart(request):
+
+    return render(request, 'cart.html')
+
+
+def cart_shipping(request):
+
+    return redirect('/success')
+
+
+def thank_you_page(request):
+    return render(request, 'thankyou.html')
+
 # admin pages
+
+
 def register_login(request):
     return render(request, 'register_login.html')
 
