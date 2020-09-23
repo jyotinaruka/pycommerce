@@ -12,7 +12,7 @@ def index(request):
 
 def category(request, id):
     categories = Category.objects.all()
-    products = Product.objects.filter(Categories__id=id)
+    products = Product.objects.filter(categories__id=id)
     context = {
         "categories": categories,
         "products": products
@@ -45,7 +45,6 @@ def thank_you_page(request):
 def register_login(request):
     return render(request, 'register_login.html')
 
-<<<<<<< HEAD
 def register(request):
     errors = Customer.objects.register_validator(request.POST)
     if len(errors) > 0:
@@ -99,9 +98,6 @@ def dashboard(request):
     return render(request, 'dashboard/index.html', context)
 
 @login_required(login_url='/')
-=======
-
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
 def all_products(request):
     all_products = Product.objects.all()
     context = {
@@ -110,11 +106,7 @@ def all_products(request):
 
     return render(request, 'dashboard/products.html', context)
 
-<<<<<<< HEAD
 @login_required(login_url='/')
-=======
-
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
 def showproduct(request, product_id):
     this_product = Product.objects.get(id=product_id)
     categories = Category.objects.all()
@@ -125,21 +117,11 @@ def showproduct(request, product_id):
 
     return render(request, 'dashboard/singleproduct.html', context)
 
-<<<<<<< HEAD
 @login_required(login_url='/')
-=======
-
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
 def editproduct(request):
     this_product = Product.objects.get(id=request.POST['product_id'])
     this_product.title = request.POST['title']
     this_product.desc = request.POST['desc']
-<<<<<<< HEAD
-=======
-    # this_product.categories.name = request.POST['category']
-    # new_category = request.POST['new_category']
-    this_product.image_url = request.POST['image_url']
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
     this_product.save()
 
     Category.objects.create(name= request.POST['new_category'])
@@ -152,11 +134,7 @@ def editproduct(request):
 
     return redirect('dashboard/products')
 
-<<<<<<< HEAD
 @login_required(login_url='/')
-=======
-
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
 def newproduct(request):
     categories = Category.objects.all()
     context = {
@@ -164,11 +142,7 @@ def newproduct(request):
     }
     return render(request, 'dashboard/newproduct.html', context)
 
-<<<<<<< HEAD
 @login_required(login_url='/')
-=======
-
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
 def addnewproduct(request):
 
     Product.objects.create(
@@ -182,11 +156,7 @@ def addnewproduct(request):
 
     return redirect('dashboard/products')
 
-<<<<<<< HEAD
 @login_required(login_url='/')
-=======
-
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
 def deleteproduct(request):
     this_product = Product.objects.get(id=request.POST['product_id'])
     this_product.delete()
