@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 
 <head>
   <meta charset="UTF-8">
@@ -85,69 +84,3 @@
 </body>
 
 </html>
-=======
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign Up Page</title>
-        {% load static%}
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-        <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <style>
-            .main {
-                margin: 0 auto;
-                width: 400px;
-                background-color: aliceblue;
-                padding: 20px;
-            }
-
-        </style>
-
-    </head>
-
-    <body>
-        <div class="container">
-            <h3>Edit Product - ID {{product.id}}</h3>
-            <div class="main container mt-2">
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <form class="form-signin" action="/editproduct" method="POST">
-                    <input type="hidden" type="text" name="product_id" value="{{product.id}}">
-                    {% csrf_token %}
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" value="{{product.title}}">
-                    <label for="desc">Description</label>
-                    <textarea class="form-control" name="desc" id="" cols="30" rows="10">{{product.desc}}</textarea>
-                    <div class="form-group">
-                        <label for="category">Categories:</label>
-                        <select class="form-control" id="category" name="category">
-                            {% for category in categories%}
-                            <option>{{category.name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <label for="new_category">Or add a new category</label>
-                    <input type="text" class="form-control" name="new_category">
-                    <input type="text" class="form-control" name="title" value="{{product.title}}">
-                    <label for="image_url">Upload Images</label>
-                    <input type="text" class="form-control" name="image_url" value="{{product.image_url}}">
-                    <div class="mt-2">
-                        <button type="button" class="btn btn-secondary"><a
-                               href="/dashboard/products">Cancel</a></button>
-                        <button type="button" class="btn btn-success" disabled>Preview</button>
-                        <button class="btn btn-primary" type="submit">Update</button></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </body>
-
-</html>
->>>>>>> 613143579ae889d864ba337eb8d3022bddc59f3d
