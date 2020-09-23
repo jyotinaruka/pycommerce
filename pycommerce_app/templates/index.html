@@ -1,30 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-    {% block sidebar %}
-    <form class="form-inline pr-2">
-        <input class="col form-control-sm mb-2 mr-sm-2 mx-1" type="search" placeholder="Product name"
-               aria-label="Search">
-        <button class="col-2 btn btn-outline-success mb-2 fas fa-search" type="submit"></button>
-    </form>
-    <h4 class="mx-1">Categories</h4>
-    <ul>
-        {% for category in categories%}
-        <li><a href="/category/{{category.id}}">{{category.name}}</a></li>
-        {% endfor %}
-    </ul>
-    {% endblock %}
+{% block sidebar %}
+<form class="form-inline pr-2">
+    <input class="col form-control-sm mb-2 mr-sm-2 mx-1" type="search" placeholder="Product name"
+           aria-label="Search">
+    <button class="col-2 btn btn-outline-success mb-2 fas fa-search" type="submit"></button>
+</form>
+<h4 class="mx-1">Categories</h4>
+<ul>
+    {% for category in categories%}
+    <li><a href="/category/{{category.id}}">{{category.name}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
 
-    {% block content %}
-    <div class="row row-cols-3">
-        {% for product in products %}
-        <div class="col card">
-            <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
-            <div class="card-body text-center">
-                <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
-                <a href="#" class="btn btn-primary">Add to cart</a>
-            </div>
+{% block content %}
+<div class="row row-cols-3">
+    {% for product in products %}
+    <div class="col card">
+        <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
+        <div class="card-body text-center">
+            <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
+            <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
-        {% endfor %}
     </div>
-    {% endblock %}
+    {% endfor %}
+</div>
+{% endblock %}
