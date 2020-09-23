@@ -9,79 +9,22 @@
 </form>
 <h4 class="mx-1">Categories</h4>
 <ul>
-    <li><a href="#">Liquid Soaps</a></li>
-    <li><a href="#">Shampoos</a></li>
-    <li><a href="#">Skin Care</a></li>
-    <li><a href="#">Oils</a></li>
+    {% for category in categories%}
+    <li><a href="/category/{{category.id}}">{{category.name}}</a></li>
+    {% endfor %}
 </ul>
 {% endblock %}
 
 {% block content %}
 <div class="row row-cols-3">
+    {% for product in products %}
     <div class="col card">
-        <img src="{% static 'img/amber.jpg' %}" class="card-img-top" alt="...">
+        <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
         <div class="card-body text-center">
-            <h5 class="card-title"><a href="/product/1">Liquid Hand Soap</a></h5>
+            <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
             <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
     </div>
-    <div class="col card">
-        <img src="{% static 'img/antique-touch.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-    <div class="col card">
-        <img src="{% static 'img/dance_of_flowers.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-    <div class="col card">
-        <img src="{% static 'img/lila-bella.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-    <div class="col card">
-        <img src="{% static 'img/love.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-    <div class="col card">
-        <img src="{% static 'img/musk.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-
-    <div class="col card">
-        <img src="{% static 'img/mystic_flowers.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-    <div class="col card">
-        <img src="{% static 'img/olive_oil.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
-
-    <div class="col card">
-        <img src="{% static 'img/oud.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="">Liquid Hand Soap</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
