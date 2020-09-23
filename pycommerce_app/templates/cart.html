@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>soap</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>shampoo</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>shampoo</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+        <tfoot class="table-borderless">
+            <tr>
+                <td colspan="3"></td>
+                <th>Total $2</th>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <th><button class="btn btn-success"><a href="/">Continue shopping</a></button></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<h2>Shipping Information</h2>
+<div class="row">
+    <div class="col">
+        <form action="/carts/shipping" method="POST">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm">
+                    <input type="password" class="form-control" id="inputPassword3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">City</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">State</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Zip</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm">
+                    <button class="btn btn-primary float-right">Pay</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+{% endblock %}
