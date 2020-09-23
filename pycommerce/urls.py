@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from pycommerce_app.models import Customer as Customer
+
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'email', 'password']
+    ordering = ['first_name']
+
+admin.site.register(Customer, CustomerAdmin)
 
 urlpatterns = [
-    path('', include('pycommerce_app.urls')),
     path('admin/', admin.site.urls),
+    path('', include('pycommerce_app.urls')),
 ]

@@ -2,7 +2,7 @@ from django.db import models
 import re
 
 
-class UserManager(models.Manager):
+class CustomerManager(models.Manager):
     def register_validator(self, postData):
         errors = {}
         EMAIL_REGEX = re.compile(
@@ -33,15 +33,14 @@ class UserManager(models.Manager):
 
         return errors
 
-
-class User(models.Model):
+class Customer(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    objects = UserManager()
+    objects = CustomerManager()
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
@@ -55,13 +54,13 @@ class Product(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    products = models.ManyToManyField(Product, related_name = "Categories")
+    products = models.ManyToManyField(Product, related_name = "categories")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Order(models.Model):
     quantity = models.IntegerField()
     product = models.ForeignKey(Product, related_name="ordered_products", on_delete = models.CASCADE)
-    user = models.ForeignKey(User, related_name="ordered_users", on_delete = models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name="ordered_customers", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

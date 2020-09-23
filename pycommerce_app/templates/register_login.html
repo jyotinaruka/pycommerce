@@ -18,7 +18,6 @@
     </style>
 </head>
 <body>
-
     <div class="main container mt-2">
         {% if messages %}
         <ul class="messages">    
@@ -27,7 +26,7 @@
         {% endfor %}
         </ul>
 {% endif %}
-    <form class="form-signin" action="/register" method="POST">
+    <form class="form-signin" action="register" method="POST">
         {% csrf_token %}
         <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
         <label for="first_name">First Name</label>
@@ -45,7 +44,7 @@
     </div>
       <hr class="container">
     <div class="main">
-      <form class="form-signin" action="/login" method="POST">
+      <form class="form-signin" action="login" method="POST">
         {% csrf_token %}
         <h1 class="h3 mb-3 font-weight-normal">Please Sign in</h1>
         <label for="inputEmail">Email address</label>

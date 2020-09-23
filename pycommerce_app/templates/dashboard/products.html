@@ -1,58 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pycommerce</title>
-        {% load static%}
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-        <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pycommerce</title>
+  {% load static%}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    </head>
+</head>
 
-    <body>
-        <div class="container mt-2">
-        <button class="btn btn-danger btn-lg"><a href="products/newproduct">Add New Product</a></button>
-        <div class="container-fluid mt-2">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Picture</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Inventory Count</th>
-                        <th>Quantity Sold</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for product in products %}
-                    <tr>
-                        <td><img width="50" src="/static/img/{{product.image_url}}.jpg" alt=""></td>
-                        <td>{{product.title}}</td>
-                        <td>{{product.desc}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.inventory}}</td>
-                        <td>{{product.quantity_sold}}</td>
-                        <td>
-                            <span><a href="products/{{product.id}}">edit</a></span> | 
-                            <span>
-                            <form class="form-signin" action="/deleteproduct" method="POST">
-                                    {% csrf_token %}
-                            <input type="hidden" name="product_id" value="{{product.id}}">
-                            <button type="submit" class="btn btn-link">delete</button>
-                            </form>
-                            </span>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-danger">
+    <a class="navbar-brand" href="/dashboard">Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/products">Products <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">View Site</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <button class="btn btn-secondary"> <a class="text-light" href="/admin/logout">Logoff</a></button>
+      </form>
     </div>
-    </body>
+  </nav>
+  <div class="container mt-2">
+    <button class="btn btn-warning btn-lg"><a class="text-dark" href="products/newproduct">Add New Product</a></button>
+    <div class="container-fluid mt-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Picture</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Inventory Count</th>
+            <th>Quantity Sold</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td><img width="50" src="/static/img/{{product.image_url}}.jpg" alt=""></td>
+            <td>{{product.title}}</td>
+            <td>{{product.desc}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.inventory}}</td>
+            <td>{{product.quantity_sold}}</td>
+            <td>
+              <div class="row">
+                <div class="col-2 mt-2"><a href="products/{{product.id}}">edit</a></div>
+                <div class="col mb-2">
+                  <form class="form-signin" action="/deleteproduct" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{product.id}}">
+                    <button type="submit" class="btn btn-link">delete</button>
+                  </form>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
 
 </html>
