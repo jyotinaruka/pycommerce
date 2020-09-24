@@ -119,7 +119,20 @@ def add_cart(request):
 
     return redirect("/cart")
 
-# admin pages
+
+def cart_update(request):
+    if "customer_id" not in request.session:
+        return redirect("/register_login")
+
+    id = request.POST["id"]
+    quantity = int(request.POST["quantity"])
+    db_cart_item = ShoppingCartItem.objects.get(id=id)
+    if quantity < 1:
+        db_cart_item.delete()
+    else:
+        db_cart_item.quantity = quantity
+        db_cart_item.save()
+    return redirect("/cart")
 
 
 def register_login(request):

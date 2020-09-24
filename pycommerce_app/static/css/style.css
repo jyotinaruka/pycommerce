@@ -6,6 +6,7 @@ body {
 	width: 1280px;
 	height: auto;
 	margin: 0px auto;
+	background-color: whitesmoke;
 }
 .black-nav {
 	background-color: #121212;
@@ -63,4 +64,17 @@ a {
 #cart img {
 	height: 60px;
 	width: auto;
+}
+#cart .price {
+	width: 100px !important;
+}
+#cart .qty {
+	width: 50px !important;
+}
+#cart .total {
+	padding-right: 70px;
+}
+.carousel-thumbnails .carousel-indicators {
+	position: static;
+	height: 136px;
 }
