@@ -19,7 +19,18 @@
                 <td><a href="/product/{{item.product.id}}">{{item.product.title}}</a></td>
                 <td>{{item.product.price}}</td>
                 <td>
-                    {{item.quantity}}
+                    <form class="form-inline" action="/cart/update" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{item.id}}">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <input class="qty input-group-text" type="number" name="quantity"
+                                       value="{{item.quantity}}" required
+                                       max="10" min="0">
+                            </div>
+                            <button type="submit" class="form-control btn-success">Update</button>
+                        </div>
+                    </form>
                 </td>
                 {# https://stackoverflow.com/questions/18350630/multiplication-in-django-template-without-using-manually-created-template-tag #}
                 <td>{% widthratio item.product.price 1 item.quantity %}</td>
