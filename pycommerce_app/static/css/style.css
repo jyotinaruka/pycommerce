@@ -8,6 +8,9 @@ body {
 	margin: 0px auto;
 	background-color: whitesmoke;
 }
+.main {
+	min-height: 545px;
+}
 .black-nav {
 	background-color: #121212;
 }
