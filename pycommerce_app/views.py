@@ -235,13 +235,15 @@ def editproduct(request):
     this_product.image_url = image_url
     this_product.save()
 
-    Category.objects.create(name=request.POST['new_category'])
-    new_category = Category.objects.last()
-    this_product.categories.add(new_category)
+    if len(request.POST['new_category']) > 0:
+        new_category = Category.objects.create(
+            name=request.POST['new_category'])
+        this_product.categories.add(new_category)
 
-    categories = request.POST.getlist('category')
-    for category in categories:
-        this_product.categories.add(category)
+    category_id = int(request.POST['category'])
+    category = Category.objects.get(id=category_id)
+    this_product.categories.add(category)
+    this_product.save()
 
     return redirect('dashboard/products')
 
@@ -269,6 +271,16 @@ def addnewproduct(request):
         quantity_sold=request.POST['quantity_sold'],
         image_url=image_url
     )
+
+    if len(request.POST['new_category']) > 0:
+        new_category = Category.objects.create(
+            name=request.POST['new_category'])
+        this_product.categories.add(new_category)
+
+    category_id = int(request.POST['category'])
+    category = Category.objects.get(id=category_id)
+    this_product.categories.add(category)
+    this_product.save()
 
     return redirect('dashboard/products')
 
