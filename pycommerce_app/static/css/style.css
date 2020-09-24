@@ -64,7 +64,12 @@ a {
 	height: 60px;
 	width: auto;
 }
-
+#cart .price {
+	width: 100px !important;
+}
 #cart .qty {
 	width: 50px !important;
+}
+#cart .total {
+	padding-right: 70px;
 }

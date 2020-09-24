@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 {% block main %}
-<div>
+<div class="mx-5">
     <table id="cart" class="table table-striped">
         <thead>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Item</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
+                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center">Item</th>
+                <th scope="col" class="text-center price">Price</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-center price">Total</th>
             </tr>
         </thead>
         <tbody>
             {% for item in cart.items.all %}
             <tr>
-                <td><img class="d-block img-fluid" src="/static/img/{{item.product.image_url}}.jpg"></td>
-                <td><a href="/product/{{item.product.id}}">{{item.product.title}}</a></td>
-                <td>{{item.product.price}}</td>
-                <td>
-                    <form class="form-inline" action="/cart/update" method="POST">
+                <td class="align-middle text-center"><img class="d-block img-fluid"
+                         src="/static/img/{{item.product.image_url}}.jpg"></td>
+                <td class="align-middle"><a href="/product/{{item.product.id}}">{{item.product.title}}</a></td>
+                <td class="align-middle text-center price">$ {{item.product.price|floatformat:'2'}}</td>
+                <td class="align-middle">
+                    <form class="form-inline text-right" action="/cart/update" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{item.id}}">
-                        <div class="input-group">
+                        <div class="input-group mx-auto">
                             <div class="input-group-prepend">
                                 <input class="qty input-group-text" type="number" name="quantity"
                                        value="{{item.quantity}}" required
@@ -32,8 +33,11 @@
                         </div>
                     </form>
                 </td>
-                {# https://stackoverflow.com/questions/18350630/multiplication-in-django-template-without-using-manually-created-template-tag #}
-                <td>{% widthratio item.product.price 1 item.quantity %}</td>
+                <td class="text-right align-middle price pr-2">
+                    {# https://stackoverflow.com/questions/18350630/multiplication-in-django-template-without-using-manually-created-template-tag #}
+                    {% widthratio item.product.price 1 item.quantity as item_total %}
+                    $ {{ item_total|floatformat:'2'}}
+                </td>
             </tr>
             {% empty %}
             <tr>
@@ -43,12 +47,16 @@
         </tbody>
         <tfoot class="table-borderless">
             <tr>
-                <td colspan="3"></td>
-                <th>Total {{total}}</th>
+                <th class="text-right total" colspan="4">Total</th>
+                <th class="text-right price pr-2">$ {{total|floatformat:'2'}}</th>
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <th><button class="btn btn-success"><a href="/">Continue shopping</a></button></th>
+                <th class="text-right" colspan="2">
+                    <button class="btn btn-success">
+                        <a href="/">Continue shopping</a>
+                    </button>
+                </th>
             </tr>
         </tfoot>
     </table>
