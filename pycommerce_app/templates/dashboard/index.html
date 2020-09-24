@@ -94,24 +94,22 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Order ID</th>
-                            <th>Order Name</th>
                             <th>Ordered By</th>
-                            <th>Ordered Products</th>
+                            <th>Ordered Product</th>
                             <th>Total Amount</th>
                             <th>Order status</th>
                             <th>Order Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for order in orders%}
+                        {% for order in shopped_items%}
                         <tr>
                             <td>{{order.id}}</td>
-                            <td>Order-2</td>
-                            <td>Jon Dor</td>
-                            <td>Soap, Shampoo</td>
+                            <td>{{order.customer.first_name}} {{order.customer.last_name}}</td>
+                            <td>Amber 50 ml</td>
                             <td>$ 200</td>
                             <td>On Hold</td>
-                            <td>25, Sept 2020</td>
+                            <td>{{order.created_at}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

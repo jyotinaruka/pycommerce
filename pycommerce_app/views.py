@@ -177,11 +177,13 @@ def dashboard(request):
     customers = Customer.objects.all()
     products = Product.objects.all()
     orders = Order.objects.all()
+    shopped_items = ShoppingCart.objects.all()
  
     context = {
         'customers': customers,
         'products': products,
-        'orders' : orders
+        'orders' : orders,
+        'shopped_items' : shopped_items
     }
     return render(request, 'dashboard/index.html', context)
 
