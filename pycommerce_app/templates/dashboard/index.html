@@ -36,9 +36,37 @@
         </nav>
     </div>
     <div class="container-fluid">
+        <h1>Hello {{user.username}}!! Welcome to Admin Dashboard</h1>
+        <div class="row mt-5 mb-5">
+            <div class="col-3">
+                <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                        PRODUCTS
+                        <div class="text-dark">You have: {{products | length}} products</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-warning text-white shadow">
+                    <div class="card-body">
+                        CUSTOMERS
+                        <div class="text-dark">You have: {{customers | length}} customers</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                        ORDERS
+                        <div class="text-dark">You have: {{orders | length}} orders</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="col-6">
-                <h3>Top 10 Customers</h3>
+            <div class="col-10">
+                <h3>All Customers</h3>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -60,14 +88,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-5">
-                <h3>Top 10 Orders</h3>
+            <div class="col-10">
+                <h3>All Orders</h3>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>Order ID</th>
                             <th>Order Name</th>
-                            <th>Order Amount</th>
+                            <th>Ordered By</th>
+                            <th>Ordered Products</th>
+                            <th>Total Amount</th>
+                            <th>Order status</th>
                             <th>Order Date</th>
                         </tr>
                     </thead>
@@ -75,15 +106,18 @@
                         <tr>
                             <td>1</td>
                             <td>Order-2</td>
-                            <td>20</td>
-                            <td>Today</td>
+                            <td>Jon Dor</td>
+                            <td>Soap, Shampoo</td>
+                            <td>$ 200</td>
+                            <td>On Hold</td>
+                            <td>25, Sept 2020</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-6">
-            <h3>Top 10 Products</h3>
+        <div class="col-10">
+            <h3>All Products</h3>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -92,8 +126,25 @@
                         <th>Product Price</th>
                         <th>Inventory</th>
                         <th>Sold Amount</th>
+                        <th>Category</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <th><a href="dashboard/products/{{product.id}}">{{product.id}}</a></th>
+                        <th>{{product.title}}</th>
+                        <th>{{product.price}}</th>
+                        <th>{{product.inventory}}</th>
+                        <th>{{product.quantity_sold}}</th>
+                        <th>
+                            {% for category in product.categories.all %}
+                            {{category.name}}
+                            {% endfor %}
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
