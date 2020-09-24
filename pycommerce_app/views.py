@@ -93,7 +93,7 @@ def add_cart(request):
 
     customer_id = request.session['customer_id']
     customer = Customer.objects.get(id=customer_id)
-    cart = ShoppingCart.objects.filter(customer__id=customer_id).first()
+    cart = ShoppingCart.objects.filter(customer__id = customer_id).first()
     if cart:
         pass
     else:
@@ -180,12 +180,7 @@ def dashboard(request):
  
     context = {
         'customers': customers,
-<<<<<<< HEAD
-        'products' : products,
-        'categories' : categories
-=======
         'products': products
->>>>>>> 495063fff1b33e559a64599cec368d53146e6ab3
     }
     return render(request, 'dashboard/index.html', context)
 

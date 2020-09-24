@@ -21,7 +21,7 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'email', 'password']
     ordering = ['first_name']
 
-admin.site.register(Customer, CustomerAdmin)
+# admin.site.register(Customer, CustomerAdmin)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

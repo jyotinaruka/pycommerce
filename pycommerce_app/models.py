@@ -64,10 +64,8 @@ class Category(models.Model):
 
 class Order(models.Model):
     quantity = models.IntegerField()
-    product = models.ForeignKey(
-        Product, related_name="ordered_products", on_delete=models.CASCADE)
-    customer = models.ForeignKey(
-        Customer, related_name="ordered_customers", on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name="ordered_products", on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name="ordered_customers", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -75,13 +73,10 @@ class Order(models.Model):
 
 
 class ShoppingCart(models.Model):
-    customer = models.ForeignKey(
-        Customer, related_name="cart", on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name="cart", on_delete=models.CASCADE)
 
 
 class ShoppingCartItem(models.Model):
-    cart = models.ForeignKey(
-        ShoppingCart, related_name="items", on_delete=models.CASCADE)
-    product = models.ForeignKey(
-        Product, related_name="cart_item", on_delete=models.CASCADE)
+    cart = models.ForeignKey(ShoppingCart, related_name="items", on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name="cart_item", on_delete=models.CASCADE)
     quantity = models.IntegerField()
