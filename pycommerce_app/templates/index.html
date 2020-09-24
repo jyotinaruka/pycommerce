@@ -19,11 +19,22 @@
 <div class="row row-cols-3">
     {% for product in products %}
     <div class="col card">
-        <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
+        <form action="/cart/add" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
+            <div class="card-body text-center">
+                <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
+                <div class="form-inline">
+                    <select class="custom-select" name="quantity">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mx-2">Add to cart</button>
+                </div>
+            </div>
+        </form>
     </div>
     {% endfor %}
 </div>

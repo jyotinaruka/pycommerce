@@ -30,11 +30,11 @@
                             {% if customer %}
                             Welcome {{customer.first_name}}
                             | <a class="text-light" href="/logout">Logout</a>
+                            | <a class="text-light" href="/cart"><i class="fas fa-shopping-cart text-light"></i></a>
                             {% else %}
                             <a class="text-light" href="/register_login">Login</a>
                             | <a class="text-light" href="/register_login">Register</a>
                             {% endif %}
-                            | <a class="text-light" href="/cart"><i class="fas fa-shopping-cart text-light"></i></a>
                         </p>
                     </div>
                 </nav>

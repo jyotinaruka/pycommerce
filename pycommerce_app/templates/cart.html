@@ -2,9 +2,10 @@
 {% load static %}
 {% block main %}
 <div>
-    <table class="table table-striped">
+    <table id="cart" class="table table-striped">
         <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">Item</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
@@ -12,29 +13,25 @@
             </tr>
         </thead>
         <tbody>
+            {% for item in cart.items.all %}
             <tr>
-                <td>soap</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
+                <td><img class="d-block img-fluid" src="/static/img/{{item.product.image_url}}.jpg"></td>
+                <td>{{item.product.title}}</td>
+                <td>{{item.product.price}}</td>
+                <td>{{item.quantity}}</td>
+                {# https://stackoverflow.com/questions/18350630/multiplication-in-django-template-without-using-manually-created-template-tag #}
+                <td>{% widthratio item.product.price 1 item.quantity %}</td>
             </tr>
+            {% empty %}
             <tr>
-                <td>shampoo</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
+                <td colspan="4">No items in cart</td>
             </tr>
-            <tr>
-                <td>shampoo</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
+            {% endfor %}
         </tbody>
         <tfoot class="table-borderless">
             <tr>
                 <td colspan="3"></td>
-                <th>Total $2</th>
+                <th>Total {{total}}</th>
             </tr>
             <tr>
                 <td colspan="3"></td>
@@ -43,10 +40,11 @@
         </tfoot>
     </table>
 </div>
-<h2>Shipping Information</h2>
 <div class="row">
     <div class="col">
-        <form action="/carts/shipping" method="POST">
+        <form action="/cart/shipping" method="POST">
+            {% csrf_token %}
+            <h2>Shipping Information</h2>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
                 <div class="col-sm">
@@ -82,6 +80,65 @@
                 <div class="col-sm">
                     <input type="email" class="form-control" id="inputEmail3">
                 </div>
+            </div>
+            <h2>Billing Information</h2>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm">
+                    <input type="password" class="form-control" id="inputPassword3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">City</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">State</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Zip</label>
+                <div class="col-sm">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Card</label>
+                <div class="col-sm">
+                    <input type="number" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Security</label>
+                <div class="col-sm">
+                    <input type="number" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Expiration</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" id="inputEmail3" placeholder="mm">
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" id="inputEmail3" placeholder="yy">
+                </div>
+
             </div>
             <div class="form-group row">
                 <div class="col-sm">

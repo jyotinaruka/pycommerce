@@ -60,3 +60,7 @@ a {
 	background-color: aliceblue;
 	padding: 20px;
 }
+#cart img {
+	height: 60px;
+	width: auto;
+}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from pycommerce_app.models import Customer, Product, Category, Order
+from pycommerce_app.models import Customer, Product, Category, Order, ShoppingCart, ShoppingCartItem
 from django.contrib import messages
 import bcrypt
 from django.contrib.auth.decorators import login_required
@@ -54,23 +54,69 @@ def product_detail(request, id):
 
 
 def cart(request):
-    customer = None
-    if "customer_id" in request.session:
-        customer_id = request.session['customer_id']
-        customer = Customer.objects.get(id=customer_id)
+    if "customer_id" not in request.session:
+        return redirect("/register_login")
+
+    customer_id = request.session['customer_id']
+    customer = Customer.objects.get(id=customer_id)
+    carts = ShoppingCart.objects.filter(customer__id=customer_id)
+    if carts:
+        cart = carts[0]
+    else:
+        cart = ShoppingCart()
+        cart.customer = customer
+        cart.save()
+
+    total = 0
+    for item in cart.items.all():
+        total += item.quantity * item.product.price
     context = {
         "customer": customer,
+        "cart": cart,
+        "total": total
     }
-    return render(request, 'cart.html')
+    return render(request, 'cart.html', context)
 
 
 def cart_shipping(request):
-
     return redirect('/success')
 
 
 def thank_you_page(request):
     return render(request, 'thankyou.html')
+
+
+def add_cart(request):
+    if "customer_id" not in request.session:
+        return redirect("/register_login")
+
+    customer_id = request.session['customer_id']
+    customer = Customer.objects.get(id=customer_id)
+    cart = ShoppingCart.objects.filter(customer__id=customer_id).first()
+    if cart:
+        pass
+    else:
+        cart = ShoppingCart()
+        cart.customer = customer
+        cart.save()
+
+    quantity = int(request.POST["quantity"])
+    if quantity < 1 or quantity > 10:
+        return redirect("/")
+
+    product_id = request.POST["product_id"]
+    product = Product.objects.get(id=product_id)
+
+    cart_item = ShoppingCartItem.objects.filter(
+        cart__id=cart.id, product__id=product_id).first()
+    if cart_item:
+        cart_item.quantity += quantity
+        cart_item.save()
+    else:
+        cart_item = ShoppingCartItem.objects.create(
+            cart=cart, quantity=quantity, product=product)
+
+    return redirect("/cart")
 
 # admin pages
 
