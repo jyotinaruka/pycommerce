@@ -263,7 +263,7 @@ def addnewproduct(request):
     if len(request.POST['image_url']) > 0:
         image_url = request.POST['image_url']
 
-    Product.objects.create(
+    this_product = Product.objects.create(
         title=request.POST['title'],
         desc=request.POST['desc'],
         price=request.POST['price'],
