@@ -93,7 +93,7 @@ def add_cart(request):
 
     customer_id = request.session['customer_id']
     customer = Customer.objects.get(id=customer_id)
-    cart = ShoppingCart.objects.filter(customer__id = customer_id).first()
+    cart = ShoppingCart.objects.filter(customer__id=customer_id).first()
     if cart:
         pass
     else:
@@ -191,12 +191,12 @@ def dashboard(request):
     products = Product.objects.all()
     orders = Order.objects.all()
     shopped_items = ShoppingCart.objects.all()
- 
+
     context = {
         'customers': customers,
         'products': products,
-        'orders' : orders,
-        'shopped_items' : shopped_items
+        'orders': orders,
+        'shopped_items': shopped_items
     }
     return render(request, 'dashboard/index.html', context)
 
@@ -225,9 +225,14 @@ def showproduct(request, product_id):
 
 @login_required(login_url='/')
 def editproduct(request):
+    image_url = "placeholder"
+    if len(request.POST['image_url']) > 0:
+        image_url = request.POST['image_url']
+
     this_product = Product.objects.get(id=request.POST['product_id'])
     this_product.title = request.POST['title']
     this_product.desc = request.POST['desc']
+    this_product.image_url = image_url
     this_product.save()
 
     Category.objects.create(name=request.POST['new_category'])
@@ -252,6 +257,9 @@ def newproduct(request):
 
 @login_required(login_url='/')
 def addnewproduct(request):
+    image_url = "placeholder"
+    if len(request.POST['image_url']) > 0:
+        image_url = request.POST['image_url']
 
     Product.objects.create(
         title=request.POST['title'],
@@ -259,7 +267,7 @@ def addnewproduct(request):
         price=request.POST['price'],
         inventory=request.POST['inventory'],
         quantity_sold=request.POST['quantity_sold'],
-        image_url="placeholder"
+        image_url=image_url
     )
 
     return redirect('dashboard/products')
