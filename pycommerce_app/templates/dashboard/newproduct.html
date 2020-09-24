@@ -70,7 +70,7 @@
           <label for="category">Categories:</label>
           <select class="form-control" id="category" name="category">
             {% for category in categories%}
-            <option>{{category.name}}</option>
+            <option value="{{category.id}}">{{category.name}}</option>
             {% endfor %}
           </select>
         </div>

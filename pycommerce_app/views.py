@@ -176,11 +176,12 @@ def logout(request):
 def dashboard(request):
     customers = Customer.objects.all()
     products = Product.objects.all()
-    categories = Category.objects.all()
+    orders = Order.objects.all()
  
     context = {
         'customers': customers,
-        'products': products
+        'products': products,
+        'orders' : orders
     }
     return render(request, 'dashboard/index.html', context)
 

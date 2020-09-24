@@ -103,8 +103,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for order in orders%}
                         <tr>
-                            <td>1</td>
+                            <td>{{order.id}}</td>
                             <td>Order-2</td>
                             <td>Jon Dor</td>
                             <td>Soap, Shampoo</td>
@@ -112,6 +113,7 @@
                             <td>On Hold</td>
                             <td>25, Sept 2020</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
