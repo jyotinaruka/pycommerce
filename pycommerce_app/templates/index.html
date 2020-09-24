@@ -6,8 +6,9 @@
            aria-label="Search">
     <button class="col-2 btn btn-outline-success mb-2 fas fa-search" type="submit"></button>
 </form>
-<h4 class="mx-1">Categories</h4>
+<h5 class="mx-1">Categories</h5>
 <ul>
+    <li><a href="/">All products</a></li>
     {% for category in categories%}
     <li><a href="/category/{{category.id}}">{{category.name}}</a></li>
     {% endfor %}
