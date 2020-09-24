@@ -79,6 +79,7 @@ def cart(request):
 
 
 def cart_shipping(request):
+    # TODO create orders
     return redirect('/success')
 
 
