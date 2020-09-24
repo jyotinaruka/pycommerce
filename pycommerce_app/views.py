@@ -7,9 +7,16 @@ from .decorators import allowed_users
 
 
 def index(request):
+    customer = None
+    if "customer_id" in request.session:
+        customer_id = request.session['customer_id']
+        customer = Customer.objects.get(id=customer_id)
+    print(customer)
+
     categories = Category.objects.all()
     products = Product.objects.all()
     context = {
+        "customer": customer,
         "categories": categories,
         "products": products
     }
@@ -17,9 +24,15 @@ def index(request):
 
 
 def category(request, id):
+    customer = None
+    if "customer_id" in request.session:
+        customer_id = request.session['customer_id']
+        customer = Customer.objects.get(id=customer_id)
+
     categories = Category.objects.all()
     products = Product.objects.filter(categories__id=id)
     context = {
+        "customer": customer,
         "categories": categories,
         "products": products
     }
@@ -27,15 +40,27 @@ def category(request, id):
 
 
 def product_detail(request, id):
+    customer = None
+    if "customer_id" in request.session:
+        customer_id = request.session['customer_id']
+        customer = Customer.objects.get(id=customer_id)
+
     product = Product.objects.get(id=id)
     context = {
-        'product': product
+        "customer": customer,
+        "product": product
     }
     return render(request, 'product.html', context)
 
 
 def cart(request):
-
+    customer = None
+    if "customer_id" in request.session:
+        customer_id = request.session['customer_id']
+        customer = Customer.objects.get(id=customer_id)
+    context = {
+        "customer": customer,
+    }
     return render(request, 'cart.html')
 
 
@@ -59,7 +84,7 @@ def register(request):
     if len(errors) > 0:
         for msg in errors:
             messages.error(request, errors[msg])
-        return redirect('/')
+        return redirect('/register_login')
 
     password = request.POST['password']
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
@@ -80,7 +105,7 @@ def login(request):
     if len(errors) > 0:
         for msg in errors:
             messages.error(request, errors[msg])
-        return redirect('/')
+        return redirect('/register_login?error=BadCredentials')
 
     all_customers = Customer.objects.filter(email=request.POST['email'])
     if len(all_customers) > 0:
@@ -88,12 +113,12 @@ def login(request):
         if bcrypt.checkpw(request.POST['password'].encode(), customer.password.encode()):
             request.session['customer_id'] = customer.id
             return redirect('/dashboard/products')
-    return redirect('/')
+    return redirect('/register_login?error=BadUser')
 
 
 def logout(request):
     request.session.clear()
-    return redirect('/register_login')
+    return redirect('/')
 
 #####################################
 # Only Admins Can Access These Pages
