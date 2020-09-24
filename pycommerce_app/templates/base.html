@@ -17,7 +17,7 @@
         <div id="wrapper" class="container">
             <header class="row">
                 <nav class="col navbar black-nav">
-                    <a class="navbar-brand">
+                    <a class="navbar-brand" href="/">
                         <img src="{% static 'img/new-logo.png' %}"
                              class="d-inline-block align-top logo" alt=""
                              loading="lazy">
@@ -25,11 +25,17 @@
                              class="d-inline-block align-top" alt=""
                              loading="lazy">
                     </a>
-                    <div class="col-3">
-                        <p class="navbar-brand cart-font"><span class="text-light"> <a href="/register_login">Login</a>
-                                | </span><span class="text-light"><a href="/register_login">Register</a> | </span><a
-                               href="/cart"><i
-                                   class="fas fa-shopping-cart text-light"></i></a></p>
+                    <div class="col-6">
+                        <p class="text-light text-right">
+                            {% if customer %}
+                            Welcome {{customer.first_name}}
+                            | <a class="text-light" href="/logout">Logout</a>
+                            | <a class="text-light" href="/cart"><i class="fas fa-shopping-cart text-light"></i></a>
+                            {% else %}
+                            <a class="text-light" href="/register_login">Login</a>
+                            | <a class="text-light" href="/register_login">Register</a>
+                            {% endif %}
+                        </p>
                     </div>
                 </nav>
             </header>

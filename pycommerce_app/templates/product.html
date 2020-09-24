@@ -61,14 +61,16 @@
             <div class="col">
                 <h2>{{product.title}}</h2>
                 <p>{{product.desc}}</p>
-                <form class="form-inline">
-                    <select class="custom-select">
-                        <option selected>Qty</option>
+                <form class="form-inline" action="/cart/add" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{product.id}}">
+                    <select class="custom-select" name="quantity">
+                        <option selected value="0">Qty</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
-                    <button class="btn btn-primary mx-2">Add to cart</button>
+                    <button type="submit" class="btn btn-primary mx-2">Add to cart</button>
                 </form>
             </div>
 

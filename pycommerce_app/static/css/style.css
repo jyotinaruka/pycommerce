@@ -54,3 +54,13 @@ a {
 .carousel-indicators li {
 	width: auto !important;
 }
+.main-login {
+	margin: 0 auto;
+	width: 400px;
+	background-color: aliceblue;
+	padding: 20px;
+}
+#cart img {
+	height: 60px;
+	width: auto;
+}

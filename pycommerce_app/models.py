@@ -33,6 +33,7 @@ class CustomerManager(models.Manager):
 
         return errors
 
+
 class Customer(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -42,9 +43,10 @@ class Customer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = CustomerManager()
 
+
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    desc = models.CharField(max_length=255)
+    desc = models.TextField()
     price = models.IntegerField()
     inventory = models.IntegerField()
     quantity_sold = models.IntegerField()
@@ -52,15 +54,34 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    products = models.ManyToManyField(Product, related_name = "categories")
+    products = models.ManyToManyField(Product, related_name="categories")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Order(models.Model):
     quantity = models.IntegerField()
-    product = models.ForeignKey(Product, related_name="ordered_products", on_delete = models.CASCADE)
-    customer = models.ForeignKey(Customer, related_name="ordered_customers", on_delete = models.CASCADE)
+    product = models.ForeignKey(
+        Product, related_name="ordered_products", on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, related_name="ordered_customers", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+# Shopping cart model
+
+
+class ShoppingCart(models.Model):
+    customer = models.ForeignKey(
+        Customer, related_name="cart", on_delete=models.CASCADE)
+
+
+class ShoppingCartItem(models.Model):
+    cart = models.ForeignKey(
+        ShoppingCart, related_name="items", on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, related_name="cart_item", on_delete=models.CASCADE)
+    quantity = models.IntegerField()

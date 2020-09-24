@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block sidebar %}
 <form class="form-inline pr-2">
     <input class="col form-control-sm mb-2 mr-sm-2 mx-1" type="search" placeholder="Product name"
            aria-label="Search">
     <button class="col-2 btn btn-outline-success mb-2 fas fa-search" type="submit"></button>
 </form>
-<h4 class="mx-1">Categories</h4>
+<h5 class="mx-1">Categories</h5>
 <ul>
+    <li><a href="/">All products</a></li>
     {% for category in categories%}
     <li><a href="/category/{{category.id}}">{{category.name}}</a></li>
     {% endfor %}
@@ -18,11 +19,22 @@
 <div class="row row-cols-3">
     {% for product in products %}
     <div class="col card">
-        <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
-        <div class="card-body text-center">
-            <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
+        <form action="/cart/add" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <img src="/static/img/{{product.image_url}}.jpg" class="card-img-top" alt="">
+            <div class="card-body text-center">
+                <h5 class="card-title"><a href="/product/{{product.id}}">{{product.title}}</a></h5>
+                <div class="form-inline">
+                    <select class="custom-select" name="quantity">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mx-2">Add to cart</button>
+                </div>
+            </div>
+        </form>
     </div>
     {% endfor %}
 </div>
