@@ -11,7 +11,6 @@ def index(request):
     if "customer_id" in request.session:
         customer_id = request.session['customer_id']
         customer = Customer.objects.get(id=customer_id)
-    print(customer)
 
     categories = Category.objects.all()
     products = Product.objects.all()
@@ -84,7 +83,15 @@ def cart_shipping(request):
 
 
 def thank_you_page(request):
-    return render(request, 'thankyou.html')
+    customer = None
+    if "customer_id" in request.session:
+        customer_id = request.session['customer_id']
+        customer = Customer.objects.get(id=customer_id)
+
+    context = {
+        "customer": customer
+    }
+    return render(request, 'thankyou.html', context)
 
 
 def add_cart(request):
